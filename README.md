@@ -46,6 +46,20 @@ npm start
 | `npm run lint` | Проверка ESLint |
 | `make clean` | Удаление зависимостей и генерируемых файлов |
 
+## Автоматический анализ SonarCloud
+
+В репозитории настроен workflow [SonarCloud](./.github/workflows/sonar.yml). Он запускается после push в `main`, для pull request и вручную через **Actions → SonarCloud → Run workflow**.
+
+Для этого workflow в настройках проекта SonarCloud нужно отключить встроенный **Automatic Analysis**. Одновременный запуск Automatic Analysis и анализа из CI запрещён SonarCloud и приводит к ошибке `You are running CI analysis while Automatic Analysis is enabled`.
+
+Отключение выполняется в SonarCloud:
+
+1. Откройте проект `tanhiowyatt_SiteLed`.
+2. Перейдите в **Administration → Analysis Method**.
+3. Отключите **Automatic Analysis** и сохраните настройки.
+
+Перед первым запуском добавьте в настройках GitHub репозитория секрет `SONAR_TOKEN` через **Settings → Secrets and variables → Actions → New repository secret**.
+
 ## Деплой на Layero через GitHub
 
 Это рекомендуемый способ публикации проекта.

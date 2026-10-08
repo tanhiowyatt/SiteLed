@@ -18,7 +18,7 @@ help:
 	@echo "  make clean        Remove dependencies and generated files"
 
 install:
-	npm ci
+	npm ci --ignore-scripts
 
 dev:
 	npm run dev

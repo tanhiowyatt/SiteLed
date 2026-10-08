@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { SubmitEvent } from "react";
 import { MapPin, Minus, PackageCheck, Plus, Truck } from "lucide-react";
 import { formatPrice, PRODUCT_PRICE } from "../../price";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,7 @@ export function OrderForm() {
   const total = productTotal + deliveryPrice;
   const deliveryReady = deliveryType === "courier" || selectedPickup !== null;
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  function submit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!consent || !offer || !deliveryReady) return;
     setMessage(`Демонстрация готова: товар ${formatPrice(productTotal)} + доставка ${formatPrice(deliveryPrice)}. После подключения сервисов здесь откроется настоящая оплата.`);
