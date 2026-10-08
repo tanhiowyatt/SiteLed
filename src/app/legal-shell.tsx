@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
-export function LegalShell({ title, children }: { title: string; children: ReactNode }) {
+export function LegalShell({
+  title,
+  children,
+}: Readonly<{ title: string; children: ReactNode }>) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <header className="border-b border-border bg-card/90">
@@ -22,6 +25,6 @@ export function LegalShell({ title, children }: { title: string; children: React
   );
 }
 
-export function Fill({ children }: { children: ReactNode }) {
+export function Fill({ children }: Readonly<{ children: ReactNode }>) {
   return <span className="rounded bg-primary/10 px-1 font-semibold text-primary">[ЗАПОЛНИТЬ: {children}]</span>;
 }
