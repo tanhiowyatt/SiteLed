@@ -13,7 +13,7 @@ help:
 	@echo "  make install      Install locked dependencies"
 	@echo "  make dev          Start the development server"
 	@echo "  make build        Build the production site"
-	@echo "  make start        Serve the static production export"
+	@echo "  make start        Build and start the production server"
 	@echo "  make lint         Run ESLint"
 	@echo "  make clean        Remove dependencies and generated files"
 

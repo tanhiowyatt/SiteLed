@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CandyCane, Gift, Hexagon, PackageOpen, ShoppingBag, Sparkles, Utensils } from "lucide-react";
+import { formatPrice, PRODUCT_PRICE } from "../../price";
 import { OrderForm } from "./order-form";
 
 const kit = [
@@ -49,7 +50,7 @@ export default function Home() {
             <p className="eyebrow"><Sparkles className="size-3.5" /> Леденцы как в детстве дома</p>
             <h1 className="display-font mt-5 text-5xl leading-[0.96] tracking-[-0.03em] sm:text-6xl lg:text-7xl">Металлическая форма <span className="gradient-title">для леденцов</span></h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">Полноразмерная алюминиевая форма для шести объёмных фигурок. Готовьте янтарную карамель или шоколад.<br /><span className="inline-block">10 палочек и инструкция уже в коробке.</span></p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="#order" className="primary-cta">Купить за 1 290 ₽</a><a href="#product" className="secondary-cta">Посмотреть форму</a></div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="#order" className="primary-cta">Купить за {formatPrice(PRODUCT_PRICE)}</a><a href="#product" className="secondary-cta">Посмотреть форму</a></div>
             <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6 text-sm">
               <div className="spec-item"><dt className="display-font text-primary"><PackageOpen className="size-4" /> Комплект</dt><dd className="mt-1 text-muted-foreground">10 палочек</dd></div>
               <div className="spec-item"><dt className="display-font text-primary"><Hexagon className="size-4" /> Материал</dt><dd className="mt-1 text-muted-foreground">алюминий</dd></div>
@@ -91,7 +92,7 @@ export default function Home() {
 
       
 
-      <section id="order" className="order-surface relative"><div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr]"><div><p className="eyebrow">Оформление заказа</p><h2 className="section-title">Купить форму для леденцов</h2><div className="mt-7 flex items-center gap-4 rounded-2xl border border-border bg-card p-5"><Image src="/images/mold-cutout-v3-opt.png" width={1200} height={800} alt="Алюминиевая форма для леденцов" className="size-24 rounded-xl bg-muted/40 object-contain p-2" /><div><p className="font-semibold">Металлическая форма</p><p className="text-sm text-muted-foreground">Форма, 10 палочек, инструкция и коробка</p><p className="display-font mt-1 text-2xl text-primary">1 290 ₽</p></div></div></div><OrderForm /></div></section>
+      <section id="order" className="order-surface relative"><div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr]"><div><p className="eyebrow">Оформление заказа</p><h2 className="section-title">Купить форму для леденцов</h2><div className="mt-7 flex items-center gap-4 rounded-2xl border border-border bg-card p-5"><Image src="/images/mold-cutout-v3-opt.png" width={1200} height={800} alt="Алюминиевая форма для леденцов" className="size-24 rounded-xl bg-muted/40 object-contain p-2" /><div><p className="font-semibold">Металлическая форма</p><p className="text-sm text-muted-foreground">Форма, 10 палочек, инструкция и коробка</p><p className="display-font mt-1 text-2xl text-primary">{formatPrice(PRODUCT_PRICE)}</p></div></div></div><OrderForm /></div></section>
 
       <section id="faq" className="mint-band border-y border-border"><div className="mx-auto max-w-3xl px-5 py-16"><h2 className="section-title mt-0">Частые вопросы</h2><div className="mt-8 grid gap-3">{faqs.map(([question,answer]) => <details key={question} className="group rounded-2xl border border-border bg-card p-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">{question}<span className="text-2xl font-light text-primary transition group-open:rotate-45">+</span></summary><p className="mt-3 text-sm text-muted-foreground">{answer}</p></details>)}</div></div></section>
 

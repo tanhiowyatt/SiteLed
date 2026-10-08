@@ -2,12 +2,12 @@
 
 import { FormEvent, useState } from "react";
 import { MapPin, Minus, PackageCheck, Plus, Truck } from "lucide-react";
+import { formatPrice, PRODUCT_PRICE } from "../../price";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
-const unitPrice = 1290;
 const pickupPoints = [
   { id: "pvz-1", name: "Пункт выдачи Яндекс", address: "Москва, ул. Тверская, 12", hours: "Ежедневно 09:00–21:00" },
   { id: "pvz-2", name: "Постамат Яндекс", address: "Москва, ул. Лесная, 20", hours: "Ежедневно 08:00–23:00" },
@@ -22,7 +22,7 @@ export function OrderForm() {
   const [offer, setOffer] = useState(false);
   const [message, setMessage] = useState("");
 
-  const productTotal = unitPrice * quantity;
+  const productTotal = PRODUCT_PRICE * quantity;
   const deliveryPrice = deliveryType === "pickup" ? 249 : 449;
   const deliveryTerm = deliveryType === "pickup" ? "2–4 дня" : "1–3 дня";
   const total = productTotal + deliveryPrice;
@@ -31,7 +31,7 @@ export function OrderForm() {
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!consent || !offer || !deliveryReady) return;
-    setMessage(`Демонстрация готова: товар ${productTotal.toLocaleString("ru-RU")} ₽ + доставка ${deliveryPrice} ₽. После подключения сервисов здесь откроется настоящая оплата.`);
+    setMessage(`Демонстрация готова: товар ${formatPrice(productTotal)} + доставка ${formatPrice(deliveryPrice)}. После подключения сервисов здесь откроется настоящая оплата.`);
   }
 
   return (
@@ -107,9 +107,9 @@ export function OrderForm() {
         <label className="form-label">Комментарий<textarea name="comment" rows={3} maxLength={1000} placeholder="Пожелания по заказу и доставке" /></label>
 
         <div className="grid gap-2 border-t border-border pt-4 text-sm">
-          <div className="flex justify-between text-muted-foreground"><span>Товар</span><span>{productTotal.toLocaleString("ru-RU")} ₽</span></div>
-          <div className="flex justify-between text-muted-foreground"><span>Доставка · {deliveryTerm}</span><span>{deliveryPrice} ₽</span></div>
-          <div className="mt-1 flex items-center justify-between border-t border-border pt-3"><span className="font-semibold">Итого</span><span className="display-font text-2xl text-primary">{total.toLocaleString("ru-RU")} ₽</span></div>
+          <div className="flex justify-between text-muted-foreground"><span>Товар</span><span>{formatPrice(productTotal)}</span></div>
+          <div className="flex justify-between text-muted-foreground"><span>Доставка · {deliveryTerm}</span><span>{formatPrice(deliveryPrice)}</span></div>
+          <div className="mt-1 flex items-center justify-between border-t border-border pt-3"><span className="font-semibold">Итого</span><span className="display-font text-2xl text-primary">{formatPrice(total)}</span></div>
         </div>
 
         <div className="grid gap-3 rounded-2xl bg-muted/70 p-4">
@@ -124,7 +124,7 @@ export function OrderForm() {
         </div>
 
         <Button type="submit" disabled={!consent || !offer || !deliveryReady} size="lg" className="h-auto rounded-full py-4 text-sm font-bold uppercase tracking-[0.12em] shadow-lg">
-          Перейти к оплате · {total.toLocaleString("ru-RU")} ₽
+          Перейти к оплате · {formatPrice(total)}
         </Button>
 
         {message && <output aria-live="polite" className="rounded-xl border border-primary/30 bg-primary/10 p-4 text-sm leading-relaxed">{message}</output>}
